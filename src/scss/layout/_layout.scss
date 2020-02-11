@@ -1,0 +1,12 @@
+@use '../utils/vars' as global;
+
+.main {
+    padding: 30px;
+
+    &__wrapper {
+        padding: 30px;
+        max-width: global.$width-container;
+    }
+}
+
+
