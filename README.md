@@ -20,7 +20,7 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 ### backend
 * установить [Python3](https://www.python.org/getit/)
 * установить виртуальное окружение: ````python3 -m venv venv````
-* Устанавливаем библиотеку Pillow для работы с изображениями ````python -m pip install Pillow````
+* Устанавливаем библиотеку Pillow для работы с изображениями ````python3 -m pip install Pillow````
 
 ## Команды
 ### frontend
