@@ -1,4 +1,4 @@
-# J-SOFT.ONLINE
+# Django start template
 Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 
 # About
