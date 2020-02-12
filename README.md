@@ -1,5 +1,5 @@
 # Django start template
-Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
+Gulp + Webpack for Pug, SCSS, JS, Vue, Python (Django)
 
 # Описание
 ### frontend
@@ -27,11 +27,12 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 * создаем ветку в git ````git checkout -b html````
 * открываем папку с проектом в vscode
 
-### Для работы с frontend
+### Frontend
 * скачиваем и создаем зависимости ````yarn````
 * запускаем сборщик ````yarn gulp````
+Сборка производится в папку public
 
-### Для работы c backend открываем вторую консоль
+### Backend
 * устанавливаем виртуальное окружение ````python3 -m venv venv````
 * активируем виртуальное окружение ````source venv/bin/activate````
 * устанавливаем Django ````pip install Django````
@@ -44,10 +45,10 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 * запускаем сервер, проверяем работоспособность http://127.0.0.1:8000/ ````python manage.py runserver````
 (для gulp установлено proxy через http://127.0.0.1:8000 по этому изменения в фронтенде отображаются по этому пути)
 
-### Для внедрения Django в PUG
+### Внедрение Django в PUG
 * запускаем сборщик ````yarn gulp --django````
 * во второй консоли запускаем сервер ````python manage.py runserver````
-* изменения в PUG отображаются по адресу http://127.0.0.1:8000 (установлено proxy через http://127.0.0.1:8000)
+Сборка производится в папку jsoft_django/static и jsoft_django/templates, установлено proxy через http://127.0.0.1:8000, изменения отображаются по этому адресу
 
 ### Команды
 #### frontend
@@ -70,10 +71,10 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 * мержим ветку dev с веткой master команда ````git merge dev````
 * команда ````git push````
 
-## Тестирование и продакшн на боевом сервере
-* на боевом сервере создаем сайты "site.ru", "dev.site.ru", "html.site.ru"
-* настраиваем [deploy](https://vk.com/im?sel=8928331) : с ветки dev на dev.site.ru, с ветки html на html.site.ru, с ветки master на site.ru
-* закрываем сайты dev и html от индексации поисковиками
+## Deploy
+* на боевом сервере создаем сайты site.ru, dev.site.ru, html.site.ru
+* настраиваем [deploy](https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow) : с ветки dev на dev.site.ru, с ветки html на html.site.ru, с ветки master на site.ru
+* закрываем сайты dev.site.ru и html.site.ru от индексации поисковиками
 
 ### Дополнительная информация
 #### frontend
@@ -90,4 +91,4 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 * добавить поддержку TypeScript
 * добавить сборку спрайтов
 
-Благодарим за помощь в подготовке проекта [SharyginNikita](https://github.com/SharyginNikita/)
+Благодарю за помощь в подготовке проекта [SharyginNikita](https://github.com/SharyginNikita/)

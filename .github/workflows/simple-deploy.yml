@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    name: ssh deploy
+    runs-on: [ubuntu-latest]
+    # needs: [build]
+
+    steps:
+      - name: SSH Commands
+        uses: appleboy/ssh-action@v0.0.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd ~/crm.netaxi29.ru/
+            git pull
