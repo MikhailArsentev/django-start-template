@@ -14,7 +14,7 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python (Django)
 ## Пошаговая инструкция по запуску (для самых маленьких)
 ### Подготовка среды к работе
 * устанавливаем [VSCODE](https://code.visualstudio.com/)
-* устанавливаем расширение для работы с gitHub
+* устанавливаем расширение для работы с gitHub, авторизуемся
 * устанавливаем [Python3](https://www.python.org/downloads/)
 * устанавливаем [NodeJS](https://nodejs.org/en/)
 * устанавливаем [Yarn](https://yarnpkg.com/en/docs/install)
@@ -30,7 +30,13 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python (Django)
 ### Frontend
 * скачиваем и создаем зависимости ````yarn````
 * запускаем сборщик ````yarn gulp````
-Сборка производится в папку public
+#### команды
+* ````yarn gulp```` (Сборка и запуск сервера в режиме development, сборка в папку public)
+* ````yarn gulp buildDev```` (Сборка в режиме development)
+* ````yarn gulp buildProd```` (Сборка в режиме production)
+* ````yarn gulp testPug```` линтинг Pug файлов
+* ````yarn gulp clear```` удалить все html, css, js, img файлы из соответсвующих папок (смотреть gulpfile.js и config.js)
+Отдельные таски можно посмотреть в gulpfile.js
 
 ### Backend
 * устанавливаем виртуальное окружение ````python3 -m venv venv````
@@ -43,38 +49,28 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python (Django)
 * создаем суперпользователя админ панели ````python manage.py createsuperuser```` 
 * указываем Логин, e-mail(не обязательно), пароль
 * запускаем сервер, проверяем работоспособность http://127.0.0.1:8000/ ````python manage.py runserver````
-(для gulp установлено proxy через http://127.0.0.1:8000 по этому изменения в фронтенде отображаются по этому пути)
+Установлено proxy через http://127.0.0.1:8000 по этому изменения в фронтенде отображаются по этому пути
 
 ### Внедрение Django в PUG
 * запускаем сборщик ````yarn gulp --django````
 * во второй консоли запускаем сервер ````python manage.py runserver````
 Сборка производится в папку jsoft_django/static и jsoft_django/templates, установлено proxy через http://127.0.0.1:8000, изменения отображаются по этому адресу
 
-### Команды
-#### frontend
-* ````yarn gulp```` (Сборка и запуск сервера в режиме development)
-* ````yarn gulp buildDev```` (Сборка в режиме development)
-* ````yarn gulp buildProd```` (Сборка в режиме production)
-* ````yarn gulp testPug```` линтинг Pug файлов
-* ````yarn gulp clear```` удалить все html, css, js, img файлы из соответсвующих папок (смотреть gulpfile.js и config.js)
-* Отдельные таски можно посмотреть в gulpfile.js
-### backend
-* создаем ветку в git ````git checkout -b dev````
-* активируем виртуальное окружение ````source venv/bin/activate````
-* создаем базу данных в корневой папке jsoft_django и/или выполняем миграцию ````python manage.py migrate````
-* создаем суперпользователя админ панели ````python manage.py createsuperuser````
-* сапускаем сервер ````python manage.py runserver````
-### merge branch dev and master
+## Deploy
+* на боевом сервере создаем сайты site.ru, dev.site.ru, html.site.ru
+* настраиваем [deploy](https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow) : с ветки dev на dev.site.ru, с ветки html на html.site.ru, с ветки master на site.ru
+* закрываем сайты dev.site.ru и html.site.ru от индексации поисковиками
+Deploy конфиги в папке .github/workflows
+
+### dev and master branches merge
 * сперва надо убедиться, что мы на ветке dev
 * создаем коммит ````git add -A```` ; ````dit commit -m "__what_hew__"```` ; ````git hush```` 
 * переходим на ветку master ````git checkout master````
 * мержим ветку dev с веткой master команда ````git merge dev````
 * команда ````git push````
 
-## Deploy
-* на боевом сервере создаем сайты site.ru, dev.site.ru, html.site.ru
-* настраиваем [deploy](https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow) : с ветки dev на dev.site.ru, с ветки html на html.site.ru, с ветки master на site.ru
-* закрываем сайты dev.site.ru и html.site.ru от индексации поисковиками
+### Настройка уведомлений в Slack
+* инструкция по [ссылке](https://slack.com/apps/A0F7YS2SX-github-enterprise-server)
 
 ### Дополнительная информация
 #### frontend
