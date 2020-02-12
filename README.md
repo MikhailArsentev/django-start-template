@@ -9,7 +9,7 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 * используется [Webpack](https://webpack.js.org/) для сборки JavaScript и Vue компонентов
 * используется [gulp-pug-linter](https://www.npmjs.com/package/gulp-pug-linter), [EsLint](https://eslint.org/)
 ### backend
-* администрирование [Django]
+* администрирование [Django](https://ru.wikipedia.org/wiki/Django)
 
 ## Пошаговая инструкция по запуску (для самых маленьких)
 ### Подготовка среды к работе
