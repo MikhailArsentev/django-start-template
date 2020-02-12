@@ -28,13 +28,18 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const config = require("./config.js");
 const dir = config.dir;
 const modeProdIndex = process.argv.indexOf("--prod");
+const modeDjangoIndex = process.argv.indexOf("--django");
 
 let mode = config.mode.dev;
+let django = false;
 
 //console.log(process.argv);
 
 if (modeProdIndex > -1) {
     mode = 'production';
+}
+if (modeDjangoIndex > -1) {
+    django = true;
 }
 
 console.log(mode);
@@ -50,7 +55,8 @@ function buildPug() {
         )
         .pipe(pug())
         .pipe(prettify({}))
-        .pipe(dest(`${dir.django_templates}`));
+        .pipe(gulpif(django, dest(`${dir.django_templates}`), dest(`${dir.public}`)));
+        // .pipe(dest(`${dir.django_templates}`));
 }
 exports.buildPug = buildPug;
 
@@ -70,8 +76,9 @@ function buildScss() {
         )
         .pipe(cleanCSS())
         .pipe(gulpif(mode === "development", sourcemaps.write()))
-        .pipe(dest(`${dir.public}css`))
-        .pipe(dest(`${dir.static}css`));
+        .pipe(gulpif(django, dest(`${dir.static}css`), dest(`${dir.public}css`)));
+        // .pipe(dest(`${dir.public}css`))
+        // .pipe(dest(`${dir.static}css`));
 }
 exports.buildScss = buildScss;
 
@@ -84,8 +91,9 @@ function buildJsDev() {
         )
         .pipe(named())
         .pipe(webpack(require("./webpack.dev.js")))
-        .pipe(dest(`${dir.public}js`))
-        .pipe(dest(`${dir.static}js`));
+        .pipe(gulpif(django, dest(`${dir.static}js`), dest(`${dir.public}js`)));
+        // .pipe(dest(`${dir.public}js`))
+        // .pipe(dest(`${dir.static}js`));
 }
 exports.buildJsDev = buildJsDev;
 
@@ -98,8 +106,9 @@ function buildJsProd() {
         )
         .pipe(named())
         .pipe(webpack(require("./webpack.prod.js")))
-        .pipe(dest(`${dir.public}js`))
-        .pipe(dest(`${dir.static}js`));
+        .pipe(gulpif(django, dest(`${dir.static}js`), dest(`${dir.public}js`)));
+        // .pipe(dest(`${dir.public}js`))
+        // .pipe(dest(`${dir.static}js`));
 }
 exports.buildJsProd = buildJsProd;
 
@@ -121,15 +130,17 @@ function buildImages() {
                 })
             ])
         )
-        .pipe(dest(`${dir.public}images`))
-        .pipe(dest(`${dir.static}images`));
+        .pipe(gulpif(django, dest(`${dir.static}images`), dest(`${dir.public}images`)));
+        // .pipe(dest(`${dir.public}images`))
+        // .pipe(dest(`${dir.static}images`));
 }
 exports.buildImages = buildImages;
 
 function buildFavicon() {
     return src(`${dir.images}favicon.ico`)
-        .pipe(dest(`${dir.public}`))
-        .pipe(dest(`${dir.static}`));
+        .pipe(gulpif(django, dest(`${dir.static}`), dest(`${dir.public}`)));
+        // .pipe(dest(`${dir.public}`))
+        // .pipe(dest(`${dir.static}`));
 }
 
 function buildFonts() {
@@ -139,8 +150,9 @@ function buildFonts() {
                 errorHandler: notify.onError("Error: <%= error.message %>")
             })
         )
-        .pipe(dest(`${dir.public}fonts`))
-        .pipe(dest(`${dir.static}fonts`));
+        .pipe(gulpif(django, dest(`${dir.static}fonts`), dest(`${dir.public}fonts`)));
+        // .pipe(dest(`${dir.public}fonts`))
+        // .pipe(dest(`${dir.static}fonts`));
 }
 exports.buildFonts = buildFonts;
 
@@ -162,15 +174,29 @@ exports.testPug = testPug;
 //gulp-sass lint doesn't support dart-sass
 
 function serve(cb) {
-    browserSync.init(
-        {
-            // server: dir.public,
-            proxy: "http://127.0.0.1:8000/",
-            // port: 8080,
-            // host: "0.0.0.0"
-        },
-        cb
-    );
+    if (django) {
+        browserSync.init(
+            {
+                // server: dir.public,
+                proxy: "http://127.0.0.1:8000/",
+                // port: 8080,
+                // host: "0.0.0.0"
+            },
+            cb
+        );
+    } else {
+        browserSync.init(
+            {
+                server: dir.public,
+                // proxy: "http://127.0.0.1:8000/",
+                port: 8080,
+                host: "0.0.0.0",
+                startPath: "/website/simple_pages/home_page.html"
+            },
+            cb
+        );
+
+    }
 }
 exports.serve = serve;
 
