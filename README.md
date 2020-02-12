@@ -11,15 +11,15 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 ### backend
 * администрирование [Django]
 
-# Пошаговая инструкция по запуску (для самых маленьких)
-## Подготовка среды к работе
+## Пошаговая инструкция по запуску (для самых маленьких)
+### Подготовка среды к работе
 * устанавливаем [VSCODE](https://code.visualstudio.com/)
 * устанавливаем расширение для работы с gitHub
 * устанавливаем [Python3](https://www.python.org/downloads/)
 * устанавливаем [NodeJS](https://nodejs.org/en/)
 * устанавливаем [Yarn](https://yarnpkg.com/en/docs/install)
 
-## Подготовка проекта к работе
+### Подготовка проекта к работе
 * [репозиторий](https://github.com/MikhailArsentev/django-start-template)
 * жмем Use this template (зеленая кнопка), создаем свой проект
 * в vs code открываем консоль
@@ -49,8 +49,8 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 * во второй консоли запускаем сервер ````python manage.py runserver````
 * изменения в PUG отображаются по адресу http://127.0.0.1:8000 (установлено proxy через http://127.0.0.1:8000)
 
-## Команды
-### frontend
+### Команды
+#### frontend
 * ````yarn gulp```` (Сборка и запуск сервера в режиме development)
 * ````yarn gulp buildDev```` (Сборка в режиме development)
 * ````yarn gulp buildProd```` (Сборка в режиме production)
@@ -75,8 +75,8 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python [Django]
 * настраиваем [deploy](https://vk.com/im?sel=8928331) : с ветки dev на dev.site.ru, с ветки html на html.site.ru, с ветки master на site.ru
 * закрываем сайты dev и html от индексации поисковиками
 
-## Дополнительная информация
-### frontend
+### Дополнительная информация
+#### frontend
 * Pug миксин многоуровнего меню src/templates/mixins/menuList-mixin.pug (Документация внутри)
 * Используется dart sass
 * SCSS Lint Task был удален так как gulp-sass-lint на данный момент не поддерживает dart-sass
