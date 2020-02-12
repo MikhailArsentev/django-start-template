@@ -9,13 +9,13 @@ class HomePageView(ListView):
     model = Page
     queryset = Page.objects.filter(active=True)
     context_object_name = 'page'
-    template_name = 'website/home_page.html'
+    template_name = 'website/simple_pages/home_page.html'
 
-class DetaiPagelView(DetailView):
+class NewsDetaiView(DetailView):
     model = Page
     slug_field = 'url'
     context_object_name = 'page'
-    template_name = 'website/page_detail.html'
+    template_name = 'website/news/news_detail.html'
 
 """
 # способ вывода списка для view
