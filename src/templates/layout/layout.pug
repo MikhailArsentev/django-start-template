@@ -1,6 +1,8 @@
 include ../mixins/mixins.pug
 
 block variables
+    - let site_name = 'Название сайта'
+    
     - let utcDate = new Date();
     - let day = utcDate.getDate();
     - let month = utcDate.getMonth();
@@ -10,11 +12,9 @@ block variables
     - let seconds = utcDate.getSeconds();
     - let date = `${day}${month}${year}${hours}${minutes}${seconds}`;
 
-    - let site_name = 'Название сайта'
-
 doctype html
 
-|{% load static %}
+//- |{% load static %}
 
 html.html(lang="ru")
     head
@@ -49,9 +49,13 @@ html.html(lang="ru")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css")
         link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css")
     body.body
+
         block layoutPage
+
         noscript У вас отключен JavaScript, пожалуйста, включите его для корректной работы сайта.
+
         block scripts
+
             script(src="{% static 'js/common.js' %}?" + date)
             script(src="{% static 'js/polyfills.js' %}?" + date)
             script(src="{% static 'js/main.js' %}?" + date)

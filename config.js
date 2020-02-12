@@ -4,7 +4,7 @@ let config = {
         prod: 'production'
     },
     dir: {
-        django_templates: './jsoft_django/templates/',
+        django_templates: './jsoft_django/templates/jsoft_cms/',
         static: './jsoft_django/static/',
         public: './public/',
         scss: './src/scss/',
