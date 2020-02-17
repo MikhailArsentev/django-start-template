@@ -5,7 +5,7 @@ let config = {
     },
     dir: {
         django_templates: './jsoft_django/templates/jsoft_cms/',
-        static: './jsoft_django/static/',
+        static: './jsoft_django/static/public/',
         public: './public/',
         scss: './src/scss/',
         pug: './src/templates/',
