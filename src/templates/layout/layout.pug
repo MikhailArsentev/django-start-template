@@ -45,7 +45,8 @@ html.html(lang="ru")
         meta(name='twitter:description', content='{{ page.meta_description }}')
         meta(name='twitter:image', content='{{ page.img_og }}')
         meta(name="msapplication-TileImage" type="image/x-icon" rel="shortcut icon" content="{% static 'favicon.ico' %}?" + date)
-        link(rel="stylesheet" href="{% static 'css/main.css' %}?" + date)
+        //- link(rel="stylesheet" href="{% static 'css/main.css' %}?" + date)
+        link(rel="stylesheet" href="/css/main.css?" + date)
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css")
         link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css")
     body.body
@@ -56,6 +57,9 @@ html.html(lang="ru")
 
         block scripts
 
-            script(src="{% static 'js/common.js' %}?" + date)
-            script(src="{% static 'js/polyfills.js' %}?" + date)
-            script(src="{% static 'js/main.js' %}?" + date)
+            //- script(src="{% static 'js/common.js' %}?" + date)
+            //- script(src="{% static 'js/polyfills.js' %}?" + date)
+            //- script(src="{% static 'js/main.js' %}?" + date)
+            script(src="/js/common.js?" + date)
+            script(src="/js/polyfills.js?" + date)
+            script(src="/js/main.js?" + date)

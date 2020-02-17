@@ -3,6 +3,7 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+// const webpack = require('webpack');
 
 module.exports = {
     watchOptions: {
@@ -77,6 +78,10 @@ module.exports = {
         },
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        // new webpack.ProvidePlugin({
+        //     $: 'jquery',
+        //     jQuery: 'jquery'
+        // })
     ],
 };

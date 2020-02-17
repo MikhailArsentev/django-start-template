@@ -1,3 +1,5 @@
+// import 'jquery';
+// import 'bootstrap';
 'use strict';
 
 // временные скрипты для демонстрации анимации
@@ -15,7 +17,7 @@ $('[data-target="modal"], .modal__overlay, .modal__close').click(function(e){
 $('.modal__overlay, .modal__close').click(function(e){
     $('.about-block-item__wrapper').removeClass('hover');
 });
-console.log('js ok');
+console.log('js в порядке');
 
 
 /*

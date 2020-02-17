@@ -87,4 +87,34 @@ Deploy конфиги в папке .github/workflows
 * добавить поддержку TypeScript
 * добавить сборку спрайтов
 
+### ADD Bootstrap & Jquery
+Установить bootstrap  ````yarn add bootstrap````
+подключить его в main.scss :
+```scss
+    @forward '../../node_modules/bootstrap/scss/bootstrap-grid.scss';
+```
+Если нужен bootstrap.js, [документация тут](https://bootstrap-4.ru/docs/4.4/getting-started/webpack/), шаги:
+Установить jquery  ````yarn add jquery````
+Добавить jquery в main.js
+```javascript
+import 'jquery';
+```
+Подключить в webpack.common константу 
+```javascript
+    const webpack = require('webpack');
+```
+Добавить в секцию plugins в webpack.common:
+```javascript
+    new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'
+    }))
+```
+Добавить bootstrap в main.js
+```javascript
+import 'bootstrap';
+```
+Установить popper ````yarn add popper.js```` 
+
+***
 Благодарю за помощь в подготовке проекта [SharyginNikita](https://github.com/SharyginNikita/)
