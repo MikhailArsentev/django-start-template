@@ -1,0 +1,20 @@
+extends index.pug
+
+block content
+
+  .static-modal-wrapper
+    .form-modal
+      .form-modal__body
+        .form-modal__title.h2 Восстановление пароля
+        form(action="").form-simple
+          label.form-simple__label
+            span.form-simple__fake-label Новый пароль
+            input(type="password" required).form-simple__input
+          label.form-simple__label
+            span.form-simple__fake-label Еще раз
+            input(type="password" required).form-simple__input
+          button(type="submit").btn.btn_accent.btn_pill.mx-auto.mt-3 Сменить
+    .form-modal__append
+      .links
+        a(href="auth.html") Войти
+        a(href="reg.html") Регистрация

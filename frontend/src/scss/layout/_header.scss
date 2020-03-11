@@ -1,0 +1,26 @@
+header.header {
+    background: #fff;
+    box-shadow: 0 0.125rem 0.625rem rgba(90,97,105,.12);
+    padding: 20px;
+}
+
+.header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    & svg {
+        height: 40px;
+    }
+}
+
+.account {
+    &__entrance {
+        cursor: pointer;
+        & svg {
+            height: 20px;
+        }
+    }
+}

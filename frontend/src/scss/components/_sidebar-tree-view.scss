@@ -1,0 +1,137 @@
+@use '../utils/vars' as global;
+
+aside.sidebar {
+  width: global.$sidebar-width;
+  flex: 0 0 global.$sidebar-width;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background-color: #fff;
+  box-shadow: global.$sidebar-shadow;
+}
+.sidebar-list {
+  padding: 30px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: global.$sidebar-width;
+  height: calc(100vh - 81px);
+  // border-right: 1px solid global.$border-color;
+  &__title {
+    padding-bottom: 20px;
+    color: global.$link-color;
+  }
+  & ul {
+    padding: 5px 0 0 0;
+    display: none;
+    li {
+      position: relative;
+      display: block;
+      padding: 5px 0 5px 24px;
+      &:before {
+        content: '';
+        display: block;
+        background: global.$color-black;
+        position: absolute;
+        top: 15px;
+        left: -3px;
+        width: 24px;
+        height: 1px;
+      }
+      &:after {
+        content: '';
+        display: block;
+        background: global.$color-black;
+        position: absolute;
+        top: -14px;
+        left: -3px;
+        width: 1px;
+        height: 100%;
+      }
+      span {
+        display: block;
+        position: absolute;
+        top: 8px;
+        left: 14px;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border: 1px solid global.$color-black;
+        border-radius: 1px;
+        cursor: pointer;
+        z-index: 1;
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          left: 2px;
+          border-radius: 2px;
+          top: 5px;
+          width: 8px;
+          height: 2px;
+          background: global.$color-black;
+        }
+        &:after {
+          transform: rotate(90deg);
+        }
+        & ~ a {
+          padding-left: 18px;
+        }
+      }
+      a {
+        display: inline-block;
+        color: global.$link-sidebar-color;
+        padding-left: 10px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      > ul {
+        display: none;
+      }
+      &.active {
+        > .item-name {
+          display: inline-block;
+          color: global.$color-black;
+          padding-left: 18px;
+          font-weight: bold;
+          cursor: default;
+        }
+      }
+      &.open {
+        > span {
+          &:after {
+            display: none;
+          }
+        }
+        > ul {
+          display: block;
+        }
+        > span ~ div {
+          padding-left: 18px;
+        }
+        & > div {
+          font-weight: bold;
+          padding-left: 10px;
+          color: global.$link-sidebar-color;
+        }
+      }
+    }
+    &.ul-root {
+      display: block;
+      padding: 5px 0 0 14px;
+      > li:first-child {
+        &:after {
+          top: 15px;
+          height: calc(100% - 28px);
+        }
+      }
+      & li:last-child {
+        &:after {
+          height: 30px;
+        }
+      }
+    }
+  }
+}
+

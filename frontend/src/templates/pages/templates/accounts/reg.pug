@@ -1,0 +1,27 @@
+extends index.pug
+
+block content
+
+  .static-modal-wrapper
+    .form-modal
+      .form-modal__body
+        .form-modal__title.h2 Регистрация
+        .form-modal__alert
+          | Для регистрации укажите ваш e-mail, мы отправим на него пароль для входа.
+        form(action="").form-simple
+          label.form-simple__label
+            span.form-simple__fake-label E-mail
+            input(type="email" required).form-simple__input
+          .form-modal__privacy
+            .checkbox
+              label.checkbox__label
+                input(type="checkbox" checked required)
+                .checkbox-fake-label
+                  span Согласен на
+                  a(href="/privacy/" target="_blank")
+                    |обработку персональных данных
+          button(type="submit").btn.btn_accent.btn_pill.mx-auto.mt-3 Зарегистрироваться
+    .form-modal__append
+      .links
+        a(href="auth.html") Войти
+        a(href="forgot_pass.html") Восстановить пароль

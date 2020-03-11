@@ -1,0 +1,126 @@
+@use '../utils/vars' as global;
+// use BAM modifier
+
+.btn {
+  font-weight: 400;
+  border: 1px solid transparent;
+  padding: .5625rem 1rem;
+  font-size: .75rem;
+  line-height: 1.125;
+  border-radius: .25rem;
+  transition: all .15s;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+  &_accent {
+    color: #fff;
+    border-color: #1BB5BF;
+    background-color: #1BB5BF;
+    box-shadow: none;
+    &:hover {
+      color: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,.05), 0 4px 10px rgba(27, 181, 191, .25);;
+    }
+  }
+  &_pill {
+    border-radius: 10em;
+  }
+  &_link {
+    color: global.$link-color;
+  }
+  &.btn-success {
+    color: #fff;
+    background-color: rgb(23, 198, 113);
+    border-color: rgb(23, 198, 113);
+  }
+  &.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    &:hover {
+      color: #fff;
+      background-color: #5a6268;
+      border-color: #545b62;
+    }
+  }
+  &__name {
+    padding-left: 10px;
+  }
+  &_call-to-action {
+    border-radius: 50px;
+    background: #FF5722;
+    color: #fff;
+    display: block;
+    padding: 1rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0 auto;
+    width: max-content;
+    &:hover {
+      color: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,.05), 0 4px 10px rgba(255,87,34, .25)
+    }
+  }
+}
+a.btn {
+  display: inline-block;
+}
+
+
+.checkbox {
+  &__label {
+    position: relative;
+    & .checkbox-fake-label {
+      position: relative;
+      padding-left: 30px;
+      font-size: 12px;
+      &:before {
+        display: block;
+        position: absolute;
+        content: '';
+        top: 0.1875rem;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+        background-color: #fff;
+        border: 1px solid #e1e5eb;
+        transition: all 250ms cubic-bezier(0.27, 0.01, 0.38, 1.06);
+        box-shadow: none;
+        margin-right: 10px;
+      }
+      &:after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 7px;
+        width: 5px;
+        height: 11px;
+        opacity: 0;
+        transform: rotate(45deg) scale(0);
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        transition: transform 250ms cubic-bezier(0.27, 0.01, 0.38, 1.06), border 250ms cubic-bezier(0.27, 0.01, 0.38, 1.06);
+        transition-delay: 100ms;
+      }
+      & a {
+        font-size: 12px;
+      }
+    }
+    & input[type="checkbox"] {
+      display: none;
+      &:checked ~ .checkbox-fake-label:before {
+        border: 1px solid #1bb5bf;
+        background: #1bb5bf;
+      }
+      &:checked ~ .checkbox-fake-label:after {
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
+        background-image: none;
+      }
+    }
+  }
+}

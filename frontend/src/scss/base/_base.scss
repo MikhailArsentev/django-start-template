@@ -1,0 +1,64 @@
+@use '../utils/vars' as global;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  text-decoration: none;
+}
+
+body {
+  background: #f5f6f8;
+  font-family: global.$font-default;
+  font-size: 14px;
+  line-height: 1.4;
+  // color: global.$font-default-color;
+}
+
+body.fixed {
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.ml-auto,
+.mx-auto {
+  display: block;
+  margin-left: auto!important;
+}
+
+.mr-auto,
+.mx-auto {
+  display: block;
+  margin-right: auto!important;
+}
+
+.mt-3 {
+  margin-top: 30px;
+}
+
+.card {
+  background-color: #fff;
+  border: none;
+  border-radius: .625rem .625rem;
+  box-shadow: global.$card-shadow;
+}
+
+.header__logo {
+  a {
+    display: inline-block;
+  }
+}

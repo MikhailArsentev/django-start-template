@@ -1,0 +1,142 @@
+//- include ../mixins/mixins.pug
+
+block variables
+  - let utcDate = new Date();
+  - let day = utcDate.getDate();
+  - let month = utcDate.getMonth();
+  - let year = utcDate.getFullYear();
+  - let hours = utcDate.getHours();
+  - let minutes = utcDate.getMinutes();
+  - let seconds = utcDate.getSeconds();
+  - let date = `${day}${month}${year}${hours}${minutes}${seconds}`;
+
+  //- Template vars:
+  - let author = 'J-SOFT LLC';
+  - let reply_to = 'admin@j-soft.online';
+  - let site_name = 'Название сайта';
+  - let theme_color = '#1bb5bf';
+  - let apple_mobile_web_app_status_bar = 'black';
+  - let apple_mobile_web_app_status_bar_style = 'black-translucent';
+
+  //- Django Page vars:
+  //- {{ page.head_title }}
+  //- {{ page.meta_description }}
+  //- {{ page.img_og }}
+  //- {{ page.url }}
+
+doctype html
+html(lang='ru-RU')
+  head
+    meta(charset="utf-8")
+    title {{ page.head_title }}
+    meta(name='description'                             content='{{ page.meta_description }}')
+    //- If need Zoom off
+    //- meta(name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0')
+    meta(name="viewport"                                content="width=device-width, height=device-height, initial-scale=1.0")
+    //- Schema.org
+    meta(itemprop='name'                                content=site_name)
+    meta(itemprop='description'                         content='{{ page.meta_description }}')
+    meta(itemprop="image"                               content='{{ page.img_og }}')
+    meta(name='format-detection'                        content='telephone=no')
+    meta(name='format-detection'                        content='address=no')
+    //- Auto translate
+    meta(name='google'                                  content='notranslate')
+    //- PWA
+    meta(name='theme-color'                             content=theme_color)
+    link(rel='manifest'                                 href='/manifest.json')
+    meta(name='apple-mobile-web-app-capable'            content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style'   content=apple_mobile_web_app_status_bar_style)
+    meta(name='apple-mobile-web-app-status-bar'         content=apple_mobile_web_app_status_bar)
+    //- IOS
+    meta(name='apple-mobile-web-app-title'              content=site_name)
+    link(rel='apple-touch-icon' sizes='57x57'           href='/static/images/icons/icon@57x57.png')
+    link(rel='apple-touch-icon' sizes='60x60'           href='/static/images/icons/icon@60x60.png')
+    link(rel='apple-touch-icon' sizes='72x72'           href='/static/images/icons/icon@72x72.png')
+    link(rel='apple-touch-icon' sizes='76x76'           href='/static/images/icons/icon@76x76.png')
+    link(rel='apple-touch-icon' sizes='114x114'         href='/static/images/icons/icon@114x114.png')
+    link(rel='apple-touch-icon' sizes='120x120'         href='/static/images/icons/icon@120x120.png')
+    link(rel='apple-touch-icon' sizes='144x144'         href='/static/images/icons/icon@144x144.png')
+    link(rel='apple-touch-icon' sizes='152x152'         href='/static/images/icons/icon@152x152.png')
+    link(rel='apple-touch-icon' sizes='180x180'         href='/static/images/icons/icon@180x180.png')
+    link(rel="apple-touch-startup-image"                href='/static/images/icons/icon@apple-touch-startup-image.png')
+    link(rel='apple-touch-icon-precomposed'             href='/static/images/icons/icon@apple-touch-icon-precomposed.png')
+    link(rel="mask-icon" color="#0054ff"                href="/static/images/icons/icon@safari-pinned-tab.svg")
+    //- OG
+    meta(property='og:locale'                           content='ru_RU')
+    meta(property='og:type'                             content='website')
+    meta(property='og:title'                            content='{{ page.head_title }}')
+    meta(property='og:url'                              content='{{ page.url }}')
+    meta(property='og:description'                      content='{{ page.meta_description }}')
+    meta(property='og:site_name'                        content=site_name)
+    meta(property='og:image'                            content='{{ page.img_og }}')
+    meta(property='og:image:alt'                        content='{{ page.head_title }}')
+    meta(name='twitter:card'                            content='summary')
+    meta(name='twitter:site'                            content=site_name)
+    meta(name='twitter:title'                           content='{{ page.head_title }}')
+    meta(name='twitter:description'                     content='{{ page.meta_description }}')
+    meta(name='twitter:image'                           content='{{ page.img_og }}')
+    //- IE
+    meta(http-equiv='X-UA-Compatible'                   content='IE=edge')
+    |
+    |       <!--[if IE]>
+    |       <meta http-equiv="imagetoolbar" content="no"/>
+    |       <meta http-equiv="MSThemeCompatible" content="no"/>
+    |       <meta name="MobileOptimized" content="320">
+    |     <![endif]-->
+    |
+    //- Blackberry and etc.
+    meta(http-equiv='cleartype'                         content='on')
+    meta(name='HandheldFriendly'                        content='True')
+    //- Windows 8
+    meta(name="application-name"                        content=site_name)
+    meta(name="msapplication-config"                    content='browserconfig.xml')
+    meta(name="msapplication-starturl"                  content="./")
+    meta(name='msapplication-tooltip'                   content='{{ page.meta_description }}')
+    meta(name="msapplication-TileColor"                 content="#ffffff")
+    meta(name="msapplication-window"                    content='width=400;height=300')
+    //- Author
+    meta(name="author"                                  content=author)
+    meta(name="copyright"                               content='(c)')
+    meta(http-equiv="Reply-to"                          content=reply_to)
+    //- Favicons
+    link(rel="icon" type="image/png" sizes="16x16"      href="/static/images/icons/icon@16x16.png")
+    link(rel="icon" type="image/png" sizes="32x32"      href="/static/images/icons/icon@32x32.png")
+    link(rel='icon' type='image/png' sizes="128x128"    href='/static/images/icons/icon@128x128.png')
+
+    //- Head static
+    block head
+
+    //- If uses another source
+    link(rel="preconnect" crossorigin=""                href="//www.google-analytics.com")
+
+  block body
+
+    body
+
+      block main_wrapper
+
+        block header
+
+          include header.pug
+
+        block content
+
+        block footer
+
+          include footer.pug
+
+      |
+      |
+      noscript У вас отключен JavaScript, пожалуйста, включите его для корректной работы сайта.
+
+      block scripts
+
+        //-  For Django
+        //- script(src='{% static "js/common.js" %}')
+        //- script(src='{% static "js/polyfills.js" %}')
+        //- script(src='{% static "js/app.js" %}')
+        //- script(src='{% static "js/main.js" %}')
+
+        script(src='/static/js/common.js?' + date)
+        //- script(src='/static/js/polyfills.js?' + date)
+        script(src='/static/js/main.js?' + date)

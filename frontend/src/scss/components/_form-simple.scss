@@ -1,0 +1,32 @@
+.form-simple {
+  display: block;
+  &__label {
+    display: block;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+
+  &__fake-label {
+    display: block;
+    font-weight: 400;
+    margin-bottom: .5rem;
+    color: #5a6169;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: .4375rem .75rem;
+    font-size: .8125rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #e1e5eb;
+    font-weight: 300;
+    will-change: border-color,box-shadow;
+    border-radius: .25rem;
+    box-shadow: none;
+    transition: box-shadow .25s cubic-bezier(.27,.01,.38,1.06),border .25s cubic-bezier(.27,.01,.38,1.06);
+  }
+}

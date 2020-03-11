@@ -1,0 +1,26 @@
+@use '../utils/vars' as global;
+
+h1,
+.h1 {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: global.$font-comfortaa;
+}
+
+h2,
+.h2 {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: global.$font-comfortaa;
+}
+
+.h1-simple-page {
+  text-align: center;
+  padding: 40px 0;
+  & h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+// use BAM modifier

@@ -3,71 +3,65 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python (Django)
 
 # Описание
 ### frontend
-* именование классов по [БЭМ](https://ru.bem.info/)
-* используются препроцессоры [Pug](https://pugjs.org/) и [dart SCSS](https://sass-scss.ru/dart-sass/)
-* используется транспайлер JavaSCript compiler [Babel](https://babeljs.io/)
-* используется [Webpack](https://webpack.js.org/) для сборки JavaScript и Vue компонентов
-* используется [gulp-pug-linter](https://www.npmjs.com/package/gulp-pug-linter), [EsLint](https://eslint.org/)
+именование классов по [БЭМ](https://ru.bem.info/)
+используются препроцессоры [Pug](https://pugjs.org/) и [dart SCSS](https://sass-scss.ru/dart-sass/)
+используется транспайлер JavaSCript compiler [Babel](https://babeljs.io/)
+используется [Webpack](https://webpack.js.org/) для сборки JavaScript и Vue компонентов
+используется [gulp-pug-linter](https://www.npmjs.com/package/gulp-pug-linter), [EsLint](https://eslint.org/)
 ### backend
-* администрирование [Django](https://ru.wikipedia.org/wiki/Django)
+администрирование [Django](https://ru.wikipedia.org/wiki/Django)
 
 ## Пошаговая инструкция по запуску (для самых маленьких)
 ### Подготовка среды к работе
-* устанавливаем [VSCODE](https://code.visualstudio.com/)
-* устанавливаем расширение для работы с gitHub, авторизуемся
-* устанавливаем [Python3](https://www.python.org/downloads/)
-* устанавливаем [NodeJS](https://nodejs.org/en/)
-* устанавливаем [Yarn](https://yarnpkg.com/en/docs/install)
-
-### Подготовка проекта к работе
-* [репозиторий](https://github.com/MikhailArsentev/django-start-template)
-* жмем Use this template (зеленая кнопка), создаем свой проект
-* в vs code открываем консоль
-* клонируем репозиторий ````git clone https://github.com/__ваш_аккаунт__/___ваш_проект__/.git````
-* создаем ветку в git ````git checkout -b html````
-* открываем папку с проектом в vscode
+Устанавливаем:
+[Python3](https://www.python.org/downloads/)
+[NodeJS](https://nodejs.org/en/)
+[Yarn](https://yarnpkg.com/en/docs/install)
+[Image Magic](https://imagemagick.org/script/download.php). Для Mac OS ````brew install imagemagick````
 
 ### Frontend
-* скачиваем и создаем зависимости ````yarn````
-* запускаем сборщик ````yarn gulp````
+скачиваем и создаем зависимости ````yarn````
+запускаем сборщик ````yarn gulp````
+
 #### команды
 * ````yarn gulp```` (Сборка и запуск сервера в режиме development, сборка в папку public)
 * ````yarn gulp buildDev```` (Сборка в режиме development)
 * ````yarn gulp buildProd```` (Сборка в режиме production)
 * ````yarn gulp testPug```` линтинг Pug файлов
-* ````yarn gulp clear```` удалить все html, css, js, img файлы из соответсвующих папок (смотреть gulpfile.js и config.js)
-Отдельные таски можно посмотреть в gulpfile.js
+* ````yarn gulp buildIcons```` запускаем таску для подготовки иконок
+> Отдельные таски можно посмотреть в gulpfile.js
+
+#### Особенности сборки
+Добавление постфикса .exc к названию JS файла отключает его полифилы. Файл будет просто перемещен в Public без изменений и без постфикса. Пример: main.exc.js -> public/js/main.js
+
 
 ### Backend
-* устанавливаем виртуальное окружение ````python3 -m venv venv````
-* активируем виртуальное окружение ````source venv/bin/activate````
-* устанавливаем Django ````pip install Django````
-* обновляем pip ````pip install --upgrade pip````
-* переходим в папку jsoft_django ````cd jsoft_django````
-* устанавливаем библиотеку Pillow для работы с изображениями ````python -m pip install Pillow````
-* создаем базу данных и выполняем миграцию моделей в нее ````python manage.py migrate````
-* создаем суперпользователя админ панели ````python manage.py createsuperuser```` 
-* указываем Логин, e-mail(не обязательно), пароль
-* запускаем сервер, проверяем работоспособность http://127.0.0.1:8000/ ````python manage.py runserver````
-Установлено proxy через http://127.0.0.1:8000 по этому изменения в фронтенде отображаются по этому пути
+устанавливаем виртуальное окружение **в папке jsoft_django** ````python3 -m venv venv````
+активируем виртуальное окружение ````source venv/bin/activate````
+обновляем pip ````pip install --upgrade pip````
+устанавливаем Django ````pip install Django````
+устанавливаем библиотеку Pillow для работы с изображениями ````python -m pip install Pillow````
+создаем базу данных и выполняем миграцию моделей в нее ````python manage.py migrate````
+создаем суперпользователя админ панели ````python manage.py createsuperuser```` указываем Логин, e-mail(не обязательно), пароль
+запускаем сервер, проверяем работоспособность http://127.0.0.1:8000/ ````python manage.py runserver````
+вход в админку [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
-### Внедрение Django в PUG
-* запускаем сборщик ````yarn gulp --django````
-* во второй консоли запускаем сервер ````python manage.py runserver````
-Сборка производится в папку jsoft_django/static и jsoft_django/templates, установлено proxy через http://127.0.0.1:8000, изменения отображаются по этому адресу
+### Передача статики в Django
+запускаем сборщик ````yarn gulp --django````
+> Сборка производится в папку jsoft_django/static. Установлено proxy через http://127.0.0.1:8000, изменения в статике отображаются по этому адресу
 
 ## Deploy
-* на боевом сервере создаем сайты site.ru, dev.site.ru, html.site.ru
-* настраиваем [deploy](https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow) : с ветки dev на dev.site.ru, с ветки html на html.site.ru, с ветки master на site.ru
-* закрываем сайты dev.site.ru и html.site.ru от индексации поисковиками
+на боевом сервере создаем сайты site.ru, dev.site.ru
+настраиваем [deploy](https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow) : с ветки dev на dev.site.ru, с ветки master на site.ru
+закрываем сайт dev.site.ru от индексации поисковиками
 Deploy конфиги в папке .github/workflows
 
 ### dev and master branches merge
-* сперва надо убедиться, что мы на ветке dev
-* создаем коммит ````git add -A```` ; ````dit commit -m "__what_hew__"```` ; ````git hush```` 
-* переходим на ветку master ````git checkout master````
-* мержим ветку dev с веткой master команда ````git merge dev````
-* команда ````git push````
+сперва надо убедиться, что мы на ветке dev
+создаем коммит ````git add -A```` ; ````dit commit -m "__what_hew__"```` ; ````git push````
+переходим на ветку master ````git checkout master````
+мержим ветку dev с веткой master команда ````git merge dev````
+команда ````git push````
 
 ### Настройка уведомлений в Slack
 * инструкция по [ссылке](https://slack.com/apps/A0F7YS2SX-github-enterprise-server)
@@ -114,7 +108,4 @@ import 'jquery';
 ```javascript
 import 'bootstrap';
 ```
-Установить popper ````yarn add popper.js```` 
-
-***
-Благодарю за помощь в подготовке проекта [SharyginNikita](https://github.com/SharyginNikita/)
+Установить popper ````yarn add popper.js````
