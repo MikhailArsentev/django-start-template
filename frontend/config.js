@@ -1,12 +1,12 @@
-let config = {
+const config = {
   mode: {
     dev: 'development',
-    prod: 'production'
+    prod: 'production',
   },
   dir: {
-    django_templates: '../jsoft_django/templates/',
-    root_files: '../jsoft_django/root_files/',
-    static: '../jsoft_django/static/',
+    django_templates: '../jsoft_online/templates/',
+    root_files: '../jsoft_online/root_files/',
+    static: '../jsoft_online/static/',
     public: './public/',
     publicStatic: './public/static/',
     scss: './src/scss/',
@@ -14,7 +14,7 @@ let config = {
     images: './src/images/',
     js: './src/js/**',
     fonts: './src/fonts/**/*',
-    vue: './src/{vuex, modules}/**/*.{js,vue}'
+    vue: './src/{vuex, modules}/**/*.{js,vue}',
   },
   iconSizes: [
     { width: 16, heigth: 16 },
@@ -39,6 +39,6 @@ let config = {
     { width: 384, heigth: 384 },
     { width: 512, heigth: 512 },
   ],
-}
+};
 
 module.exports = config;

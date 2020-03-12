@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb-base",
+  "parser": "babel-eslint",
+  "rules": {
+    "no-console": "off",
+    "prefer-destructuring": "off",
+    "no-underscore-dangle": "off",
+    "func-names": "off",
+    "no-plusplus": "off",
+    "prefer-arrow-callback": "off",
+    "camelcase": 0,
+    "no-continue": "off",
+    "prefer-default-export": 0
+    }
+}

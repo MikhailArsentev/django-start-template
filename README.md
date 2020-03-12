@@ -39,7 +39,10 @@ Gulp + Webpack for Pug, SCSS, JS, Vue, Python (Django)
 устанавливаем виртуальное окружение **в папке jsoft_django** ````python3 -m venv venv````
 активируем виртуальное окружение ````source venv/bin/activate````
 обновляем pip ````pip install --upgrade pip````
-устанавливаем Django ````pip install Django````
+все библиотеки и зависимости можно установить **одной командой** (из папки jsoft_django) ````pip install -r reqs.txt````
+(перед тем как пушить проект, запишем список зависимостей ````pip freeze > reqs.txt````)
+Но можно по отдельности:
+Переходим в папку jsoft_django, устанавливаем Django ````pip install Django````
 устанавливаем библиотеку Pillow для работы с изображениями ````python -m pip install Pillow````
 создаем базу данных и выполняем миграцию моделей в нее ````python manage.py migrate````
 создаем суперпользователя админ панели ````python manage.py createsuperuser```` указываем Логин, e-mail(не обязательно), пароль
@@ -93,7 +96,7 @@ Deploy конфиги в папке .github/workflows
 ```javascript
 import 'jquery';
 ```
-Подключить в webpack.common константу 
+Подключить в webpack.common константу
 ```javascript
     const webpack = require('webpack');
 ```

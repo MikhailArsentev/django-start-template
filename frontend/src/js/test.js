@@ -1,3 +1,4 @@
-let arrow = () => {
-    console.log('test.js ES6 ok');
+/* eslint-disable no-unused-vars */
+const arrow = () => {
+  console.log('test.js ES6 ok');
 };

@@ -1,8 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-undef */
 // Версия кэша
 const v = '1';
 
-const staticCacheName = 'static-cache-v'+v;
-const dynamicCacheName = 'dynamic-cache-v'+v;
+const staticCacheName = `static-cache-v${v}`;
+const dynamicCacheName = `dynamic-cache-v${v}`;
 
 const staticAssets = [
   '/',
@@ -18,20 +22,20 @@ const staticAssets = [
   '/offline.html',
 ];
 
-self.addEventListener('install', async event => {
-  //const cache = await caches.open(staticCacheName);
-  //await cache.addAll(staticAssets);
+self.addEventListener('install', async (event) => {
+  // const cache = await caches.open(staticCacheName);
+  // await cache.addAll(staticAssets);
   event.waitUntil(
     caches
       .open(staticCacheName)
-      .then((cache) => cache.addAll(staticAssets))
+      .then((cache) => cache.addAll(staticAssets)),
   );
   console.log('Service worker has been installed');
 });
 
-self.addEventListener('activate', async event => {
+self.addEventListener('activate', async (event) => {
   const cachesKeys = await caches.keys();
-  const checkKeys = cachesKeys.map(async key => {
+  const checkKeys = cachesKeys.map(async (key) => {
     if (![staticCacheName, dynamicCacheName].includes(key)) {
       await caches.delete(key);
     }
@@ -40,15 +44,15 @@ self.addEventListener('activate', async event => {
   console.log('Service worker has been activated');
 });
 
-self.addEventListener('fetch', event => {
-  //укажем папки и запросы для исключения из кеша
+self.addEventListener('fetch', (event) => {
+  // укажем папки и запросы для исключения из кеша
   if (
-    event.request.method !== 'GET' ||
-    event.request.url.indexOf('http://') === 0 ||
-    event.request.url.indexOf('an.yandex.ru') !== -1 ||
-    event.request.url.indexOf('/admin/') !== -1 ||
-    event.request.url.indexOf('/accounts/') !== -1 ||
-    event.request.url.indexOf('/projects/') !== -1
+    event.request.method !== 'GET'
+    || event.request.url.indexOf('http://') === 0
+    || event.request.url.indexOf('an.yandex.ru') !== -1
+    || event.request.url.indexOf('/admin/') !== -1
+    || event.request.url.indexOf('/accounts/') !== -1
+    || event.request.url.indexOf('/projects/') !== -1
   ) {
     return;
   }
@@ -58,20 +62,18 @@ self.addEventListener('fetch', event => {
     // This is a navigation request, so respond with a
     // complete HTML document.
     event.respondWith(checkCache(event.request));
-    //event.respondWith(fromCache(event.request));
-    console.log(`navigate`);
+    // event.respondWith(fromCache(event.request));
+    console.log('navigate');
     event.waitUntil(
       update(event.request)
         // В конце, после получения "свежих" данных от сервера уведомляем всех клиентов.
-        .then(refresh)
+        .then(refresh),
     );
-
   } else if (event.request.mode === 'same-origin') {
-    return;
+
     // This is a same-origin request for a resource, so
     // respond appropriately depending on event.request.url, etc.
   }
-
 });
 
 async function checkCache(req) {
@@ -80,29 +82,26 @@ async function checkCache(req) {
 }
 
 
-
-/*async function fromCache(request) {
+/* async function fromCache(request) {
   return caches.open(staticCacheName).then((cache) =>
     cache.match(request).then((matching) =>
       matching || Promise.reject('no-match')
     ));
-}*/
+} */
+
 async function update(request) {
-  return caches.open(staticCacheName).then((cache) =>
-    fetch(request).then((response) => {
-        cache.put(request, response.clone()).then(() => response);
-        console.log('update');
-        console.log(request);
-        console.log(response);
-        console.log(response.headers.get('ETag'));
-      }
-    )
-  );
+  return caches.open(staticCacheName).then((cache) => fetch(request).then((response) => {
+    cache.put(request, response.clone()).then(() => response);
+    console.log('update');
+    console.log(request);
+    console.log(response);
+    console.log(response.headers.get('ETag'));
+  }));
 }
 
 // Шлём сообщения об обновлении данных всем клиентам.
 async function refresh(response) {
-  console.log(`refresh`);
+  console.log('refresh');
   return self.clients.matchAll().then((clients) => {
     clients.forEach((client) => {
       // Подробнее про ETag можно прочитать тут
@@ -111,16 +110,14 @@ async function refresh(response) {
       const message = {
         type: 'refresh',
         url: response !== undefined ? response.url : '',
-        eTag: response !== undefined ? response.headers.get('ETag') : ''
+        eTag: response !== undefined ? response.headers.get('ETag') : '',
       };
       // Уведомляем клиент об обновлении данных.
-      console.log(`refresh2`);
+      console.log('refresh2');
       client.postMessage(JSON.stringify(message));
     });
   });
 }
-
-
 
 
 async function checkOnline(req) {
@@ -135,9 +132,8 @@ async function checkOnline(req) {
       return cachedRes;
     // } else if (req.url.indexOf('.php') !== -1) {
     //    return caches.match('./offline.html');
-    } else {
-      return caches.match('./offline.html');
-      // return caches.match('./local/templates/new_site_by_j-soft/images/no-img.png');
     }
+    return caches.match('./offline.html');
+    // return caches.match('./local/templates/new_site_by_j-soft/images/no-img.png');
   }
 }
